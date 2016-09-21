@@ -11,7 +11,7 @@ public class ImageNote extends Note {
 	}
 	
 	@Override
-    boolean matchKeyword(String keyword) {
+	boolean matchKeyword(String keyword) {
 		return getTitle().toLowerCase().contains(keyword.toLowerCase());
 	}
 }

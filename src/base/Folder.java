@@ -77,26 +77,29 @@ public class Folder implements Comparable<Folder> {
 		
 		// Make it case-insensitive by toLowerCase all strings
 		keywordsWithOr = keywordsWithOr.toLowerCase();
-		String[] keywordsStringList = keywordsWithOr.split(" or ");
-		String[][] keywordsList = new String[keywordsStringList.length][];
+		String[] keywordsOrStringList = keywordsWithOr.split("(?<!or) (?!or)");
+		String[][] keywordsList = new String[keywordsOrStringList.length][];
 		
-		for (int i = 0; i < keywordsStringList.length; i++) {
-			keywordsList[i] = keywordsStringList[i].split(" ");
+		for (int i = 0; i < keywordsOrStringList.length; i++) {
+			keywordsList[i] = keywordsOrStringList[i].split(" or ");
 		}
 		
 		for (Note note : notes) {
+			boolean andMatched = true;
 			for (String[] keywords : keywordsList) {
-				boolean matched = true;
+				boolean orMatched = false;
 				for (String keyword : keywords) {
-					if (!note.matchKeyword(keyword)) {
-						matched = false;
+					if (note.matchKeyword(keyword)) {
+						orMatched = true;
 						break;
 					}
 				}
-				if (matched) {
-					matchedNotes.add(note);
-					break;
+				if (!orMatched) {
+					andMatched = false;
 				}
+			}
+			if (andMatched) {
+				matchedNotes.add(note);
 			}
 		}
 		

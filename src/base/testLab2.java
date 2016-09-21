@@ -3,7 +3,7 @@
 
 package base;
 
-public class TestLab2 {
+public class testLab2 {
 
 		public static void main(String args[]){
 			

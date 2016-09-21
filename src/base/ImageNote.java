@@ -10,4 +10,8 @@ public class ImageNote extends Note {
 		super(title);
 	}
 	
+	@Override
+    boolean matchKeyword(String keyword) {
+		return getTitle().toLowerCase().contains(keyword.toLowerCase());
+	}
 }

@@ -15,14 +15,19 @@ public class NoteBook implements java.io.Serializable {
 
     private ArrayList<Folder> folders;
 
+    /**
+     * Construct an empty NoteBook.
+     */
     public NoteBook() {
-        folders = new ArrayList<Folder>();
+        folders = new ArrayList<>();
     }
 
     /**
-     * Constructor of an object NoteBook from an object serialization on disk
+     * Constructor of an object NoteBook from an object serialization on disk.
      *
-     * @param file, the path of the file for loading the object serialization
+     * @param file the path of the file for loading the object serialization.
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
     public NoteBook(String file) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(file);
@@ -31,25 +36,53 @@ public class NoteBook implements java.io.Serializable {
         this.folders = n.getFolders();
     }
 
+    /**
+     * Create a text note in the given folder of the NoteBook.
+     * @param folderName The name of the folder to store the text note.
+     * @param title The title of the note.
+     * @return The created note.
+     */
     public boolean createTextNote(String folderName, String title) {
         TextNote note = new TextNote(title);
         return insertNote(folderName, note);
     }
 
+    /**
+     * Create a text note in the given folder of the NoteBook, with given content provided.
+     * @param folderName The name of the folder to store the text note.
+     * @param title The title of the note.
+     * @param content The content of the note.
+     * @return The created note.
+     */
     public boolean createTextNote(String folderName, String title, String content) {
         TextNote note = new TextNote(title, content);
         return insertNote(folderName, note);
     }
 
+    /**
+     * Create an image note in the given folder of the NoteBook.
+     * @param folderName The name of the folder to store the image note.
+     * @param title The title of the note.
+     * @return The created note.
+     */
     public boolean createImageNote(String folderName, String title) {
         ImageNote note = new ImageNote(title);
         return insertNote(folderName, note);
     }
 
+    /**
+     * @return An ArrayList of all folders.
+     */
     public ArrayList<Folder> getFolders() {
         return folders;
     }
 
+    /**
+     * Insert an note into the given folder of the NoteBook.
+     * @param folderName The name of the folder to insert the note.
+     * @param toAddNote The note to insert.
+     * @return True if inserted successfully.
+     */
     private boolean insertNote(String folderName, Note toAddNote) {
         Folder destFolder = null;
         for (Folder folder : folders) {
@@ -78,6 +111,9 @@ public class NoteBook implements java.io.Serializable {
         return true;
     }
 
+    /**
+     * Sort the folders and the notes in all folders.
+     */
     public void sortFolders() {
         for (Folder folder : folders) {
             folder.sortNotes();
@@ -86,8 +122,14 @@ public class NoteBook implements java.io.Serializable {
         Collections.sort(folders);
     }
 
+    /**
+     * Search and return the notes matching the given keywords.
+     *
+     * @param keywordsWithOr Keyword string specified in lab3.pdf.
+     * @return Notes matching the keywords.
+     */
     public List<Note> searchNotes(String keywordsWithOr) {
-        ArrayList<Note> matchedNotes = new ArrayList<Note>();
+        ArrayList<Note> matchedNotes = new ArrayList<>();
 
         for (Folder folder : folders) {
             matchedNotes.addAll(folder.searchNotes(keywordsWithOr));
@@ -97,12 +139,13 @@ public class NoteBook implements java.io.Serializable {
     }
 
     /**
-     * method to save the NoteBook instance to file
+     * Method to save the NoteBook instance to file.
      *
-     * @param file, the path of the file where to save the object serialization
-     * @return true if save on file is successful, false otherwise
+     * @param file The path of the file where to save the object serialization.
+     * @return True if save on file is successful, false otherwise.
      */
     public boolean save(String file) {
+        // Should throw exception but specified by lab5.pdf
         try (
                 FileOutputStream fos = new FileOutputStream(file);
                 ObjectOutputStream out = new ObjectOutputStream(fos)

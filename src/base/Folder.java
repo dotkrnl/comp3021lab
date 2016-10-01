@@ -11,19 +11,35 @@ public class Folder implements Comparable<Folder>, java.io.Serializable {
     private ArrayList<Note> notes;
     private String name;
 
+    /**
+     * Construct a note folder with given name.
+     *
+     * @param name The name of the folder.
+     */
     public Folder(String name) {
         this.name = name;
-        notes = new ArrayList<Note>();
+        notes = new ArrayList<>();
     }
 
+    /**
+     * Append a note after the end of the folder.
+     *
+     * @param aNote The note to add.
+     */
     public void addNote(Note aNote) {
         notes.add(aNote);
     }
 
+    /**
+     * @return The name of the folder
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return The array list of the notes in the folder.
+     */
     public ArrayList<Note> getNotes() {
         return notes;
     }
@@ -69,12 +85,21 @@ public class Folder implements Comparable<Folder>, java.io.Serializable {
         return getName().compareTo(o.getName());
     }
 
+    /**
+     * Sort the notes in the folder.
+     */
     public void sortNotes() {
         Collections.sort(notes);
     }
 
+    /**
+     * Search and return the notes in the folder matching the given keywords.
+     *
+     * @param keywordsWithOr Keyword string specified in lab3.pdf.
+     * @return Notes matching the keywords.
+     */
     public List<Note> searchNotes(String keywordsWithOr) {
-        ArrayList<Note> matchedNotes = new ArrayList<Note>();
+        ArrayList<Note> matchedNotes = new ArrayList<>();
 
         // Make it case-insensitive by toLowerCase all strings
         keywordsWithOr = keywordsWithOr.toLowerCase();

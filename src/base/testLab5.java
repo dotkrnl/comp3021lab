@@ -35,10 +35,10 @@ public class testLab5 {
         TextNote t = (TextNote) nb2.getFolders().get(0).getNotes().get(0);
         t.exportTextToFile("");
 
-        if (new File(((TextNote) nb2.getFolders().get(0).getNotes().get(0))
+        if (new File(nb2.getFolders().get(0).getNotes().get(0)
                 .getTitle().replaceAll(" ", "_") + ".txt").exists()) {
             System.out.println("TextNote exported in " +
-                    new File(((TextNote) nb2.getFolders().get(0).getNotes().get(0))
+                    new File(nb2.getFolders().get(0).getNotes().get(0)
                             .getTitle().replaceAll(" ", "_") + ".txt").getAbsolutePath());
         } else {
             throw new Exception("Your code has some problems.......");

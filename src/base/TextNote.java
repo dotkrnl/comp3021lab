@@ -9,22 +9,31 @@ public class TextNote extends Note {
 
     String content;
 
+    /**
+     * Construct a note with empty text content.
+     * @param title The title of the note.
+     */
     public TextNote(String title) {
         super(title);
     }
 
+    /**
+     * Construct a note with text content provided.
+     * @param title The title of the note.
+     * @param content The content of the note.
+     */
     public TextNote(String title, String content) {
         this(title);
         this.content = content;
     }
 
     /**
-     * Load a TextNote from File f
-     * <p>
-     * The tile of the TextNote is the name of the file
-     * The content of the TextNote is the content of the file
+     * Load a TextNote from File f.
+     * The tile of the TextNote is the name of the file.
+     * The content of the TextNote is the content of the file.
      *
-     * @param File f
+     * @param f The file to read from.
+     * @throws IOException
      */
     public TextNote(File f) throws IOException {
         super(f.getName());
@@ -33,35 +42,38 @@ public class TextNote extends Note {
     }
 
     /**
-     * Get the content of a file
+     * Get the content of a file.
      *
-     * @param absolutePath of the file
-     * @return the content of the file
+     * @param absolutePath of the file.
+     * @return The content of the file.
+     * @throws IOException
      */
     private String getTextFromFile(String absolutePath) throws IOException {
-        String result = "";
         File inputFile = new File(absolutePath);
         Scanner scanner = new Scanner(inputFile);
-        result = scanner.useDelimiter("\\Z").next();
-        return result;
+        return scanner.useDelimiter("\\Z").next();
     }
 
     /**
-     * Export text note to file
+     * Export text note to file.
+     * The file has to be named as the title of the note with extension ".txt".
+     * If the tile contains white spaces " " they has to be replaced with underscores "_".
      *
-     * @param pathFolder path of the folder where to export the note
-     *                   the file has to be named as the title of the note with extension ".txt"
-     *                   <p>
-     *                   if the tile contains white spaces " " they has to be replaced with underscores "_" *
+     * @param pathFolder Path of the folder where to export the note.
+     * @throws IOException
      */
     public void exportTextToFile(String pathFolder) throws IOException {
+        // Fix that on UNIX it will be cause writing to '/' if path is empty.
         String folderNameWithSeparator =
                 pathFolder.equals("") ? "" : pathFolder + File.separator;
+
         String fileName = getTitle().replaceAll(" ", "_") + ".txt";
+
         File file = new File(folderNameWithSeparator + fileName);
         if (!file.exists()) {
             file.createNewFile();
         }
+
         try (FileWriter out = new FileWriter(file)) {
             out.write(content);
         }

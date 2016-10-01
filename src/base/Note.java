@@ -9,11 +9,18 @@ public abstract class Note implements Comparable<Note>, java.io.Serializable {
     private Date date;
     private String title;
 
+    /**
+     * Construct a note with given title.
+     * @param title The title of the note.
+     */
     public Note(String title) {
         this.title = title;
         date = new Date(System.currentTimeMillis());
     }
 
+    /**
+     * @return The title of note.
+     */
     public String getTitle() {
         return title;
     }

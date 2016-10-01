@@ -2,7 +2,9 @@ package base;
 
 import java.util.Date;
 
-public abstract class Note implements Comparable<Note> {
+public abstract class Note implements Comparable<Note>, java.io.Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Date date;
 	private String title;
@@ -11,7 +13,7 @@ public abstract class Note implements Comparable<Note> {
 		this.title = title;
 		date = new Date(System.currentTimeMillis());
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}

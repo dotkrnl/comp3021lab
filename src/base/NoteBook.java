@@ -34,6 +34,7 @@ public class NoteBook implements java.io.Serializable {
         ObjectInputStream in = new ObjectInputStream(fis);
         NoteBook n = (NoteBook) in.readObject();
         this.folders = n.getFolders();
+        in.close();
     }
 
     /**

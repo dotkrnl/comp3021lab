@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class TextNote extends Note {
 
+	private static final long serialVersionUID = 1L;
+
     String content;
 
     /**
@@ -51,7 +53,9 @@ public class TextNote extends Note {
     private String getTextFromFile(String absolutePath) throws IOException {
         File inputFile = new File(absolutePath);
         Scanner scanner = new Scanner(inputFile);
-        return scanner.useDelimiter("\\Z").next();
+        String ret = scanner.useDelimiter("\\Z").next();
+        scanner.close();
+        return ret;
     }
 
     /**

@@ -4,7 +4,9 @@ import java.io.File;
 
 public class ImageNote extends Note {
 
-    File image;
+	private static final long serialVersionUID = 1L;
+	
+	File image;
 
     /**
      * Construct a note with an image.

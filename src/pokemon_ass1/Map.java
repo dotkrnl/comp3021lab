@@ -105,6 +105,12 @@ public class Map {
                         !isPassable(next)) {     // or point not accessible.
                     continue;
                 }
+                if (!destination.getLocation().equals(b) &&
+                        destination.getLocation().equals(next)) {
+                    // According to Valerio, The player cannot arrive
+                    // at the destination more times in the same path.
+                    continue;
+                }
                 Route next_path = path.clone();
                 try {
                     next_path.append(next);

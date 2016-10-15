@@ -126,7 +126,9 @@ public class Player implements Cloneable {
     /**
      * The balls are not sufficient to catch one pokemon.
      */
-    class BallNotSufficientException extends Exception {}
+    class BallNotSufficientException extends Exception {
+        private static final long serialVersionUID = 1L;
+    }
 
 
     private Route visited;

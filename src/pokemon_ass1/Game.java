@@ -1,10 +1,10 @@
 package pokemon_ass1;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
 
 /**
  * This the entry class of the whole program, which contains the main
@@ -213,7 +213,9 @@ public class Game {
      * to get from starting to destination. Or impossible to access all cells
      * required.
      */
-    public class NotAccessibleException extends Exception {};
+    public class NotAccessibleException extends Exception {
+        private static final long serialVersionUID = 1L;
+    }
 
 
     private final Map game_map;

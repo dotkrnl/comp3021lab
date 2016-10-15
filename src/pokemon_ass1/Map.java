@@ -22,7 +22,7 @@ import java.util.Set;
 public class Map {
 
     /**
-     * Construct the immutable map, with starting & destination point provided.
+     * Construct the immutable map, with starting and destination point.
      * Also cells should be specified, and is_wall array should be a
      * height * width array that is_wall[i][j] states (i,j) is a wall.
      * @param is_wall A height * width array indicates the walls.
@@ -51,6 +51,7 @@ public class Map {
      * @param a The starting cell.
      * @param b The destination cell.
      * @return The shortest path from a to b.
+     * @throws NoPathException If no path between a and b.
      */
     public Route shortestPath(Cell a, Cell b) throws NoPathException {
         if (!memo_route.containsKey(a)) {
@@ -154,7 +155,9 @@ public class Map {
     /**
      * There's not path between two cells.
      */
-    public class NoPathException extends Exception {}
+    public class NoPathException extends Exception {
+        private static final long serialVersionUID = 1L;
+    }
 
 
     private final int height, width;

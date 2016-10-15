@@ -99,7 +99,9 @@ public class Route implements Cloneable {
      * This exception will be thrown if user tried to append a point that is
      * not next to the last point in the route.
      */
-    class PointNotNearException extends Exception { }
+    class PointNotNearException extends Exception {
+        private static final long serialVersionUID = 1L;
+    }
 
 
     private ArrayList<Point> route;

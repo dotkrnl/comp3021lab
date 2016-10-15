@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
  */
 public class GameMapFile extends File {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Construct a file to read game map.
      * @param file_name The file name of this file.

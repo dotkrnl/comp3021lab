@@ -13,10 +13,21 @@ import java.util.List;
  */
 class GameOutputFile extends File {
 
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Construct a file to write game player information.
+     * @param file_name The file name of this file.
+     */
     public GameOutputFile(String file_name) {
         super(file_name);
     }
 
+    /**
+     * Save player information to this file.
+     * @param p The player to save.
+     * @throws IOException If writing failed.
+     */
     public void save(Player p) throws IOException {
         this.createNewFile();
 
@@ -46,6 +57,11 @@ class GameOutputFile extends File {
         bw.close();
     }
 
+    /**
+     * Get the formatted string of a Point.
+     * @param p The point to format.
+     * @return The formatted string.
+     */
     public static String formatPoint(Point p) {
         return "<" + p.x + ',' + p.y + '>';
     }

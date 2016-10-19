@@ -47,7 +47,7 @@ public class TextNote extends Note {
     /**
      * @return The content of note.
      */
-    private String getContent() {
+    public String getContent() {
         return this.content;
     }
     

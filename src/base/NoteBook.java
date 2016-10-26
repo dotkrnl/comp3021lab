@@ -77,6 +77,21 @@ public class NoteBook implements java.io.Serializable {
     public ArrayList<Folder> getFolders() {
         return folders;
     }
+    
+    /**
+     * Add a folder to the noteBook.
+     * @param name Name of the folder.
+     * @return True if succeeded.
+     */
+    public boolean addFolder(String name) {
+        for (Folder folder : folders) {
+            if (folder.getName().equals(name)) {
+                return false;
+            }
+        }
+        folders.add(new Folder(name));
+        return true;
+    }
 
     /**
      * Insert an note into the given folder of the NoteBook.

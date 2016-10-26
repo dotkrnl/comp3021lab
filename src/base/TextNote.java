@@ -50,6 +50,14 @@ public class TextNote extends Note {
     public String getContent() {
         return this.content;
     }
+
+    /**
+     * Set the content of note.
+     * @param content The content of note.
+     */
+    public void setContent(String content) {
+        this.content = content;
+    }
     
     /**
      * Get the content of a file.
